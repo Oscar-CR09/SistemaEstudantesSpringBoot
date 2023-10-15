@@ -102,11 +102,11 @@ public class EstudiantesApplication implements CommandLineRunner {
 				logger.info("Agregar Estudiante : " + nl);
 				logger.info("Nombre: ");
 				var nombre = consola.nextLine();
-				logger.info("Apellido");
+				logger.info("Apellido: ");
 				var apellido = consola.nextLine();
-				logger.info("telefono");
+				logger.info("telefono: ");
 				var telefono = consola.nextLine();
-				logger.info("Email");
+				logger.info("Email: ");
 				var email = consola.nextLine();
 				//crear el objeto estudiante
 				var estudiante = new Estudiante();
@@ -131,11 +131,11 @@ public class EstudiantesApplication implements CommandLineRunner {
 					logger.info("Agregar Estudiante : " + nl);
 					logger.info("Nombre: ");
 					var nombre = consola.nextLine();
-					logger.info("Apellido");
+					logger.info("Apellido: ");
 					var apellido = consola.nextLine();
-					logger.info("telefono");
+					logger.info("telefono: ");
 					var telefono = consola.nextLine();
-					logger.info("Email");
+					logger.info("Email:  ");
 					var email = consola.nextLine();
 					//crear el objeto estudiante
 
@@ -153,15 +153,29 @@ public class EstudiantesApplication implements CommandLineRunner {
 
 			case 5 -> {//eliminar estudiante
 				logger.info("Eliminar estudiante: " + nl);
-				
+				logger.info("Id Estudiante: ");
+				var idEstudiante = Integer.parseInt(consola.nextLine());
+				var estudiante = estudianteServicio.buscarEstudiantePorId(idEstudiante);
+
+				if (estudiante !=null){
+
+					estudianteServicio.eliminarEstudiante(estudiante);
+					logger.info("Estudiante eliminado: " + estudiante + nl);
+				}else {
+					logger.info("Estudiante No encontrado con id: " + idEstudiante);
+				}
 			}
 
 			case 6 -> {
 
+				//salir
+				logger.info("Hasta Pronto! " + nl + nl);
+				salir= true;
 			}
 
 			default -> {
 
+				logger.info("Opcion No reconocida: " +opcion + nl);
 			}
 		}//fin switch
 		return salir;
