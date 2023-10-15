@@ -81,6 +81,87 @@ public class EstudiantesApplication implements CommandLineRunner {
 
 			case 2 ->{
 
+				//buscar
+				logger.info("Introduce el id estudiiante a buscar:");
+				var idEstudiante = Integer.parseInt(consola.nextLine());
+				Estudiante estudiante = estudianteServicio.buscarEstudiantePorId(idEstudiante);
+
+				if (estudiante  != null){
+					logger.info("Estudiante encontrado: " +estudiante + nl );
+
+				}else {
+					logger.info("Estudiante No esncontrado con Id: " + idEstudiante + nl);
+
+				}
+
+			}
+
+			case 3->{
+
+				//Agregar estudiante
+				logger.info("Agregar Estudiante : " + nl);
+				logger.info("Nombre: ");
+				var nombre = consola.nextLine();
+				logger.info("Apellido");
+				var apellido = consola.nextLine();
+				logger.info("telefono");
+				var telefono = consola.nextLine();
+				logger.info("Email");
+				var email = consola.nextLine();
+				//crear el objeto estudiante
+				var estudiante = new Estudiante();
+				estudiante.setNombre(nombre);
+				estudiante.setApellido(apellido);
+				estudiante.setTelefono(telefono);
+				estudiante.setEmail(email);
+				estudianteServicio.guardarEstudiante(estudiante);
+				logger.info("Estudiante agregado: " + estudiante +nl);
+
+
+			}
+
+			case 4 ->{
+				//modificar
+				logger.info("Modificar estudiante: " + nl);
+				logger.info("Id Estudiante: ");
+				var idEstudiante = Integer.parseInt(consola.nextLine());
+				Estudiante estudiante = estudianteServicio.buscarEstudiantePorId(idEstudiante);
+				if (estudiante !=null){
+
+					logger.info("Agregar Estudiante : " + nl);
+					logger.info("Nombre: ");
+					var nombre = consola.nextLine();
+					logger.info("Apellido");
+					var apellido = consola.nextLine();
+					logger.info("telefono");
+					var telefono = consola.nextLine();
+					logger.info("Email");
+					var email = consola.nextLine();
+					//crear el objeto estudiante
+
+					estudiante.setNombre(nombre);
+					estudiante.setApellido(apellido);
+					estudiante.setTelefono(telefono);
+					estudiante.setEmail(email);
+					estudianteServicio.guardarEstudiante(estudiante);
+					logger.info("Estudiante Modificado: " + estudiante + nl);
+
+				}else {
+					logger.info("Estudiante No encontrado con id: " +idEstudiante);
+				}
+			}
+
+			case 5 -> {//eliminar estudiante
+				logger.info("Eliminar estudiante: " + nl);
+				
+			}
+
+			case 6 -> {
+
+			}
+
+			default -> {
+
 			}
 		}//fin switch
 		return salir;
