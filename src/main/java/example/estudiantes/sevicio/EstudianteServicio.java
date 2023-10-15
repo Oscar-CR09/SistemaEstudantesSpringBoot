@@ -38,6 +38,6 @@ public class EstudianteServicio implements IEstudianteServicio{
     public void eliminarEstudiante(Estudiante estudiante) {
 
         estudianteRepositorio.delete(estudiante);
-        
+
     }
 }
